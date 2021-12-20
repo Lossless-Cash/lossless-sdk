@@ -4,7 +4,8 @@
   "description": "Wrapper library for Lossless v3 smart contracts",
   "main": "src/index.js",
   "scripts": {
-    "test": "npx hardhat test"
+    "lint": "eslint tests/**.spec.{js,ts} -c ./.eslintrc.js",
+    "test": "npm run lint && npx hardhat test"
   },
   "keywords": [
     "lossless"
@@ -18,6 +19,11 @@
     ]
   },
   "devDependencies": {
+    "chai": "^4.3.4",
+    "eslint": "^8.5.0",
     "hardhat": "^2.8.0"
+  },
+  "dependencies": {
+    "ethers": "^5.5.2"
   }
 }
