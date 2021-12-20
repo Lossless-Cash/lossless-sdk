@@ -1,0 +1,23 @@
+{
+  "name": "lossless-sdk",
+  "version": "1.0.0",
+  "description": "Wrapper library for Lossless v3 smart contracts",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npx hardhat test"
+  },
+  "keywords": [
+    "lossless"
+  ],
+  "author": "Adesuwa T. Dawodu",
+  "license": "ISC",
+  "nodemonConfig": {
+    "ext": "*.js,*.ts",
+    "ignore": [
+      "node_modules/*"
+    ]
+  },
+  "devDependencies": {
+    "hardhat": "^2.8.0"
+  }
+}
