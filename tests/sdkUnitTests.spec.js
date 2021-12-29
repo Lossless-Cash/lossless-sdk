@@ -40,17 +40,25 @@ function createParameter(type) {
 }
 
 [
-        /*
+    {name: 'LosslessControllerV3', sdkMethods: [
+        {method: 'getVersion'},
+        {method: 'isAddressProtected', params: ['address', 'address']},
+        {method: 'getProtectedAddressStrategy', params: ['address', 'address']},
+        {method: 'proposeNewSettlementPeriod', params: ['address', 'integer']},
+        {method: 'executeNewSettlementPeriod', params: ['address']},
+        {method: 'getLockedAmount', params: ['address', 'address']},
+        {method: 'getAvailableAmount', params: ['address', 'address']},
+    ]},
     {name:'LosslessReporting', sdkMethods: [
         {method: 'report', params: ['address', 'address']},
         {method: 'secondReport', params: ['integer', 'address']},
         {method: 'reporterClaim', params: ['integer']},
         {method: 'reporterClaimableAmount', params: ['integer']},
-        {method: 'retrieveCompensation', params: ['address', 'amount']},
+        {method: 'retrieveCompensation', params: ['address', 'integer']},
         {method: 'getVersion'},
+        {method: 'version', actualMethod: 'getVersion'},
         {method: 'getRewards'},
     ]},
-    */
     {name: 'LosslessGovernance', sdkMethods: [
         { method: 'getVersion'},
         { method: 'version', actualMethod: 'getVersion'},
@@ -68,38 +76,20 @@ function createParameter(type) {
         { method: 'retrieveFunds', params: ['integer']},
         { method: 'retrieveCompensation', params: []},
         { method: 'claimCommitteeReward', params: ['integer']},
-    /*
-    ]},
-    {name: 'LosslessControllerV3', sdkMethods: [
-        {method: 'getVersion'},
-        {method: 'isAddressProtected', params: ['address', 'address']},
-        {method: 'getProtectedAddressStrategy', params: ['address', 'address']},
-        {method: 'beforeTransfer', params: ['address', 'address', 'integer']},
-        {method: 'beforeTransferFrom', params: ['address', 'address', 'address', 'integer']},
-        {method: 'beforeMint', params: ['address', 'integer']},
-        {method: 'beforeApprove', params: ['address', 'address', 'integer']},
-        {method: 'beforeBurn', params: ['address', 'integer']},
-        {method: 'beforeIncreaseAllowance', params: ['address', 'address', 'integer']},
-        {method: 'proposeNewSettlementPeriod', params: ['address', 'integer']},
-        {method: 'executeNewSettlementPeriod', params: ['address']},
-        {method: 'getLockedAmount', params: ['address', 'address']},
-        {method: 'getAvailableAmount', params: ['address', 'address']},
     ]},
     {name: 'LosslessStaking', sdkMethods: [
+        {method: 'getVersion'},
+        {method: 'version', actualMethod: 'getVersion'},
         {method: 'stake', params: ['integer']},
         {method: 'stakerClaimableAmount', params: ['integer']},
         {method: 'stakerClaim', params: ['integer']},
-        {method: 'getVersion'},
-        {method: '', params: []},
-        {method: '', params: []},
-        {method: '', params: []},
-        {method: '', params: []},
-        {method: '', params: []},
-    */
+        {method: 'getIsAccountStaked', params: ['integer', 'address']},
+        {method: 'getStakerCoefficient', params: ['integer', 'address']},
+    // */
     ]}
 ].forEach(sdkTestArgs => {
     const { name } = sdkTestArgs
-    describe.only('Tests for ' + sdkTestArgs.name + 'sdk functions', function() {
+    describe('Tests for ' + sdkTestArgs.name + ' sdk functions', function() {
         let accounts, sdk, adr, env;
 
         before(async () => {
@@ -114,8 +104,6 @@ function createParameter(type) {
             (name == 'LosslessControllerV3') ? 'controllerV3' :
             (name == 'LosslessStaking') ? 'staking' : null;
 
-        console.log('contractName:', contractName);
-
         if(contractName == null)
             throw new Error('TestError: Invalid contract name - ' + name);
 
@@ -129,7 +117,6 @@ function createParameter(type) {
             else
                 sdk = new LosslessControllerV3();
 
-            console.log('sdk:', sdk);
             const provider = waffle.provider;
 
             return sdk.init(accounts[ faker.datatype.number({max: 9})])
