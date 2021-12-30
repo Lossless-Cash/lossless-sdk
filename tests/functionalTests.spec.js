@@ -51,7 +51,7 @@ describe('Functional tests for the lossless sdk functions', function() {
         .then(res => expect(res).to.equal(1));
     });
 
-    it.skip('losslessGovernance.isCommitteeMember() should return false if account has no role', function() {
+    it('losslessGovernance.isCommitteeMember() should return false if account has no role', function() {
         const user = accounts[3].address;
 
         return governance.isCommitteeMember(user)
