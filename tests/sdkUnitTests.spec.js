@@ -86,6 +86,8 @@ function createParameter(type) {
 ].forEach(sdkTestArgs => {
     const { name } = sdkTestArgs
     describe('Tests for ' + sdkTestArgs.name + ' sdk functions', function() {
+        const sandbox = sinon.createSandbox();
+
         let accounts, sdk;
 
         before(async () => {
@@ -116,9 +118,21 @@ function createParameter(type) {
             return sdk.init(accounts[ faker.datatype.number({max: 9})])
         });
 
+        it('init() for ' + name + ' should call correct arguments', function() {
+            const spy = sandbox.fake.resolves(true);
+
+            const path = '../src/' + name.substring(0, 1).toLowerCase() + name.substring(1);
+            const SdkModule = proxyquire(path, {'./contractCall': spy});
+            sdk = new SdkModule[name]();
+
+            const provider = faker.datatype.json();
+            return sdk.init(provider)
+                .then(() => sandbox.assert.calledWith(spy, contractName, 'getVersion', provider));
+        });
+
         contractMethods.filter(method => Array.isArray(method.params) && method.params.length > 0).forEach(args => {
             it(args.method + '() should fail if provided params are not correct', function() {
-                const spy = sinon.fake.resolves(true);
+                const spy = sandbox.fake.resolves(true);
 
                 const path = '../src/' + name.substring(0, 1).toLowerCase() + name.substring(1);
                 const SdkModule = proxyquire(path, {'./contractCall': spy});
@@ -160,7 +174,7 @@ function createParameter(type) {
 
         contractMethods.forEach(args => {
             it(args.method + '() should call contractCall if provided params are correct', function() {
-                const spy = sinon.fake.resolves(true);
+                const spy = sandbox.fake.resolves(true);
 
                 const contractMethodName = args.actualMethod || args.method;
 
@@ -177,9 +191,9 @@ function createParameter(type) {
                 return sdk[args.method](...parameters)
                     .then(() => {
                         if(parameters.length > 0)
-                            sinon.assert.calledWith(spy, contractName, contractMethodName, parameters)
+                            sandbox.assert.calledWith(spy, contractName, contractMethodName, parameters)
                         else
-                            sinon.assert.calledWith(spy, contractName, contractMethodName)
+                            sandbox.assert.calledWith(spy, contractName, contractMethodName)
                     });
             });
         });

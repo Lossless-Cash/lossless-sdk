@@ -1,5 +1,6 @@
 const deployContract = require('./deployContract');
 const contractCall = require('../src/contractCall');
+
 const chai = require('chai');
 chai.use(
     require('chai-as-promised')

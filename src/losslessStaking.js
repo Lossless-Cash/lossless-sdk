@@ -61,7 +61,8 @@ class LosslessStaking {
             return badParam('getStakerCoefficient(): reportID must be integer');
         else if(!isAddress(address))
             return badParam('getStakerCoefficient(): account must be an ethereum address');
-        return this.contract('getStakerCoefficient', [reportID, address]);
+        else
+            return this.contract('getStakerCoefficient', [reportID, address]);
     }
 }
 
