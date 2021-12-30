@@ -9,5 +9,6 @@ module.exports = {
     ...losslessGovernance,
     ...losslessReporting,
     ...losslessStaking,
-    ethers
+    ethers,
+    Provider: ethers.providers.Provider
 }

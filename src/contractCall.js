@@ -18,7 +18,6 @@ module.exports = function(_contractName, contractMethod) {
 
     if(arguments.length > 2) {
         // maybe one of the parameters is a provider
-        let _provider;
 
         const arg3 = arguments[2];
         const arg4 = arguments[3];
