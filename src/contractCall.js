@@ -1,10 +1,5 @@
 const ethers = require('ethers');
-const abis = {
-    governance: require('../artifacts/lossless-v3/contracts/LosslessGovernance.sol/LosslessGovernance.json').abi,
-    reporting: require('../artifacts/lossless-v3/contracts/LosslessControllerV3.sol/LosslessControllerV3.json').abi,
-    controllerV3: require('../artifacts/lossless-v3/contracts/LosslessControllerV3.sol/LosslessControllerV3.json').abi,
-    staking: require('../artifacts/lossless-v3/contracts/LosslessControllerV3.sol/LosslessControllerV3.json').abi,
-};
+const getABI = require('./getABI');
 
 let provider;
 /**
@@ -54,7 +49,7 @@ module.exports = function(_contractName, contractMethod) {
     if(!address)
         return Promise.reject(new Error('Contract name not recognized or hasn\'t been deployed: ' + contractName));
 
-    const contract = new ethers.Contract(addresses[contractName], abis[contractName], provider);
+    const contract = new ethers.Contract(addresses[contractName], getABI(contractName), provider);
 
     try {
         return contract[contractMethod](...contractParameters)
