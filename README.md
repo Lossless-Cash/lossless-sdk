@@ -1,4 +1,6 @@
 # Lossless Contracts SDK
+[![Tests](https://github.com/littlezigy/lossless-sdk/actions/workflows/tests.yml/badge.svg)](https://github.com/littlezigy/lossless-sdk/actions/workflows/tests.yml)
+
 This is a library to call [Lossless V3 contracts](https://github.com/Lossless-Cash/lossless-v3).
 
 
