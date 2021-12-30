@@ -1,4 +1,4 @@
-const { ethers, Provider} = require('../src');
+const { ethers, Provider } = require('../src');
 
 const chai = require('chai');
 chai.use( require('chai-as-promised') );
@@ -14,7 +14,7 @@ describe('Miscellaneous tests', function() {
     it('sdk should expose the Provider object', function() {
         expect(Provider).to.not.be.null;
         expect(Provider).to.not.be.undefined;
-        console.log('Provider:', Provider);
-        expect(Provider).to.eql(ethers.Provider);
+
+        expect(Provider).to.eql(ethers.providers.Provider);
     });
 });

@@ -5,11 +5,7 @@ const { expect } = chai;
 const sinon = require('sinon');
 const proxyquire = require('proxyquire');
 
-const { LosslessGovernance } = require('../src/losslessGovernance');
-const { LosslessReporting } = require('../src/losslessReporting');
-const { LosslessStaking } = require('../src/losslessStaking');
-const { LosslessControllerV3 } = require('../src/losslessControllerV3');
-const { waffle } = require('hardhat');
+const { LosslessGovernance, LosslessReporting, LosslessStaking, LosslessControllerV3 } = require('../src');
 const faker = require('faker');
 const deployContract = require('./deployContract');
 
@@ -90,7 +86,7 @@ function createParameter(type) {
 ].forEach(sdkTestArgs => {
     const { name } = sdkTestArgs
     describe('Tests for ' + sdkTestArgs.name + ' sdk functions', function() {
-        let accounts, sdk, adr, env;
+        let accounts, sdk;
 
         before(async () => {
             accounts = await ethers.getSigners();
@@ -116,8 +112,6 @@ function createParameter(type) {
                 sdk = new LosslessStaking();
             else
                 sdk = new LosslessControllerV3();
-
-            const provider = waffle.provider;
 
             return sdk.init(accounts[ faker.datatype.number({max: 9})])
         });
