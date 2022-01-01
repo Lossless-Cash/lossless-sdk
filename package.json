@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint src/**.js tests/**.spec.{js,ts} -c ./.eslintrc.js",
     "test": "mkdir contracts; NODE_ENV=test && npm run lint && npx hardhat test",
-    "prepare": "mkdir contracts"
+    "prepare": "rm contracts/ -rf; mkdir contracts"
   },
   "keywords": [
     "lossless"
