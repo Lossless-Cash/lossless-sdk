@@ -11,7 +11,7 @@ const deployContract = require('./deployContract');
 /*
  * These tests that the SDK is calling the contract correctly
  */
-describe.only('Functional tests for the lossless sdk functions', function() {
+describe('Functional tests for the lossless sdk functions', function() {
     let accounts, contracts, governance, reporting, staking, controllerV3, adr, env;
 
     before(async () => {
