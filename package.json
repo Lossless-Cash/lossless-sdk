@@ -13,10 +13,15 @@
   ],
   "author": "Adesuwa T. Dawodu",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/littlezigy/lossless-sdk.git"
+  },
   "nodemonConfig": {
     "ext": "*.js,*.ts",
     "ignore": [
-      "node_modules/*"
+      "node_modules/*",
+      "lossless.config.js"
     ]
   },
   "devDependencies": {
