@@ -30,6 +30,6 @@ describe('Miscellaneous tests', function() {
         expect(provider).to.not.be.undefined;
 
         expect(provider).to.include.keys('connection');
-        expect(provider.connection.url).to.equal(losslessConfig.networks.default.url);
+        expect(provider.connection.url).to.equal(losslessConfig.networks.ethereum.url);
     });
 });

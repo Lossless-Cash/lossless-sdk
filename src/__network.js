@@ -3,17 +3,19 @@ module.exports = function() {
 
     let networkName, network;
 
-    switch(process.env.NODE_ENV) {
-        case 'test':
-        case 'development':
+    switch(losslessConfig.defaultNetwork) {
         default:
-            networkName = process.env.NODE_ENV;
+            networkName = losslessConfig.defaultNetwork, network;
+            network = losslessConfig.networks[networkName];
             break;
 
-        case 'production':
+        case null:
         case undefined:
-            network = losslessConfig.networks.default;
-            networkName = 'default';
+        case 'mainnet':
+        case 'production':
+        case 'ethereum':
+            network = losslessConfig.networks.ethereum;
+            networkName = 'ethereum';
             break;
     }
 
@@ -23,6 +25,8 @@ module.exports = function() {
         if(!network || !network.url)
             throw new Error('There is no network: ' + networkName);
     }
+
+    network.name = networkName;
 
     return network;
 }

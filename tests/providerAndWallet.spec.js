@@ -15,25 +15,19 @@ describe('Wallet and Provider tests', function() {
         clearCache();
     });
 
-    it('provider: should use test network if NODE_ENV ="test"', function() {
+    it('provider: should use ethereum if !defaultNetwork', function() {
         const testURL = faker.internet.url();
         const config = {
             networks: {
-                test: {
+                ethereum: {
                     url: testURL,
                     privateKey: new ethers.Wallet.createRandom().privateKey,
                     chainId: 1337
-                },
-                default: {
-                    url: testURL,
-                    privateKey: new ethers.Wallet.createRandom().privateKey,
-                    chainId: 1
                 }
             }
         };
         writeConfig(config);
 
-        process.env.NODE_ENV='test';
         clearCache();
 
         const { provider } = require('../src');
@@ -42,15 +36,20 @@ describe('Wallet and Provider tests', function() {
         expect(provider.connection.url).to.equal(testURL);
     });
 
-    it('setupWallet should return proper wallet', function() {
+    it('setupWallet should use ethereum if !defaultNetwork', function() {
         const wallet = new sdk.ethers.Wallet.createRandom();
         const pk = wallet.privateKey;
 
         const config = {
             networks: {
-                test: {
+                ethereum: {
                     url: faker.internet.url(),
                     privateKey: pk,
+                    chainId: 1337
+                },
+                polygon: {
+                    url: faker.internet.url(),
+                    privateKey: (new sdk.ethers.Wallet.createRandom()).privateKey,
                     chainId: 1337
                 }
             }

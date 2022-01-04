@@ -21,14 +21,9 @@ describe('ContractCaller', function() {
 
                 const config = {
                     networks: {
-                        default: {
+                        ethereum: {
                             url: 'http://localhost:8545',
                             chainId: accounts[0].provider._network.chainId,
-                            privateKey: pks.privateKey
-                        },
-                        test: {
-                            url: 'http://localhost:8545',
-                            chainId: 1337,
                             privateKey: pks.privateKey
                         }
                     }

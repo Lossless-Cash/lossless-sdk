@@ -1,4 +1,6 @@
 const { setupAddresses, setupEnvironment } = require('lossless-v3/test/utilsV3');
+const configAddresses = require('../config/addresses');
+const fs = require('fs');
 
 module.exports = async function() {
     const adr = await setupAddresses();
@@ -14,10 +16,17 @@ module.exports = async function() {
     const governance = env.lssGovernance;
     const reporting = env.lssReporting;
 
-    process.env.LOSSLESS_GOVERNANCE = governance.address
-    process.env.LOSSLESS_CONTROLLER = controllerV3.address;
-    process.env.LOSSLESS_REPORTING = reporting.address;
-    process.env.LOSSLESS_STAKING = staking.address
+    const deployedContracts = {
+        governance: governance.address,
+        controllerV3: controllerV3.address,
+        reporting: reporting.address,
+        staking: staking.address
+    };
+
+    const newAddresses = { ...configAddresses, ethereum: deployedContracts };
+    let unquoted = JSON.stringify(newAddresses, null, 4).replace(/"([^"]+)":/g, '$1:');
+    const fileText = 'module.exports = ' + unquoted;
+    fs.writeFileSync(process.cwd() + '/config/addresses.js', fileText);
 
     return {
         staking, controllerV3, governance, reporting

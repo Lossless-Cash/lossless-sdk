@@ -7,10 +7,12 @@ function deleteChildren(cachedModule) {
                 deleteChildren(require.cache[ child.filename ]);
         }
 
-        delete require.cache[ child.filename ]
+        if(child.filename != process.cwd() + '/config/addresses.js')
+            delete require.cache[ child.filename ]
     });
 
-    delete require.cache[ cachedModule.filename ]
+    if(cachedModule.filename != process.cwd() + '/config/addresses.js')
+        delete require.cache[ cachedModule.filename ]
 }
 
 module.exports = function() {
@@ -21,6 +23,7 @@ module.exports = function() {
         deleteChildren(require.cache[ process.cwd() + '/lossless.config.js' ]);
     }
 
+    delete require.cache[ process.cwd() + '/config/index.js' ];
     delete require.cache[ process.cwd() + '/src/index.js' ];
     delete require.cache[ process.cwd() + '/src/setupProvider.js' ];
     delete require.cache[ process.cwd() + '/src/setupWallet.js' ];
