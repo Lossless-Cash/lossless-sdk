@@ -6,10 +6,6 @@ function badParam(message) {
 }
 
 class LosslessControllerV3 {
-    async init(provider) {
-        return contractCall('controllerV3', 'getVersion', provider);
-    }
-
     contract(methodName, parameters) {
         if(parameters && !Array.isArray(parameters))
             parameters = [parameters];

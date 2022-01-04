@@ -1,12 +1,13 @@
-const { setupAddresses, setupEnvironment, setupToken } = require('lossless-v3/test/utilsV3');
+const { setupAddresses, setupEnvironment } = require('lossless-v3/test/utilsV3');
 
-module.exports = async function(contractName, contractArguments = []) {
-        adr = await setupAddresses();
-        env = await setupEnvironment(adr.lssAdmin,
-            adr.lssRecoveryAdmin,
-            adr.lssPauseAdmin,
-            adr.lssInitialHolder,
-            adr.lssBackupAdmin);
+module.exports = async function() {
+    const adr = await setupAddresses();
+    const env = await setupEnvironment(adr.lssAdmin,
+        adr.lssRecoveryAdmin,
+        adr.lssPauseAdmin,
+        adr.lssInitialHolder,
+        adr.lssBackupAdmin
+    );
 
     const staking = env.lssStaking;
     const controllerV3 = env.lssController;

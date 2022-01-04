@@ -6,10 +6,6 @@ function badParam(message) {
 }
 
 class LosslessGovernance {
-    async init(provider) {
-        return contractCall('governance', 'getVersion', provider);
-    }
-
     contract(methodName, parameters) {
         if(parameters && !Array.isArray(parameters))
             parameters = [parameters];

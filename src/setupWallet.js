@@ -1,7 +1,7 @@
 const ethers = require('ethers');
+const provider = require('./setupProvider')();
 const network = require('./__network')();
 
 module.exports = function() {
-    const provider = new ethers.providers.JsonRpcProvider( network.url );
-    return provider;
+    return new ethers.Wallet(network.privateKey, provider);
 }

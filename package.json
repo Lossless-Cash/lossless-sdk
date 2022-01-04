@@ -4,7 +4,7 @@
   "description": "Wrapper library for Lossless v3 smart contracts",
   "main": "src/index.js",
   "scripts": {
-    "lint": "eslint src/**.js tests/**.spec.{js,ts} -c ./.eslintrc.js",
+    "lint": "eslint src/**.js tests/**.{js,ts} -c ./.eslintrc.js",
     "test": "mkdir contracts; NODE_ENV=test && npm run lint && npx hardhat test",
     "prepare": "rm contracts/ -rf; mkdir contracts"
   },

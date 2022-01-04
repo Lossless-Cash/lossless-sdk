@@ -6,10 +6,6 @@ function badParam(message) {
 }
 
 class LosslessStaking {
-    async init(provider) {
-        return contractCall('staking', 'getVersion', provider);
-    }
-
     contract(methodName, parameters) {
         if(parameters && !Array.isArray(parameters))
             parameters = [parameters];

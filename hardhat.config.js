@@ -3,6 +3,16 @@ require('hardhat-dependency-compiler');
 require('@openzeppelin/hardhat-upgrades');
 
 module.exports = {
+    defaultNetwork: 'localhost',
+    networks: {
+        localhost: {
+            gas: 'auto',
+            gasPrice: 'auto'
+        }
+    },
+    mocha: {
+        require: '_hooks.js'
+    },
     solidity: {
         compilers: [
             {

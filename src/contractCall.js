@@ -1,12 +1,12 @@
 const ethers = require('ethers');
 const getABI = require('./getABI');
+const setupWallet = require('./setupWallet');
 
-let provider;
 /**
- * params: contractName, contractMethod[, methodParameters[, provider]]
+ * params: contractName, contractMethod[, methodParameters]
  * @param methodParameters should be an array of arguments to used in contract call
  */
-module.exports = function(_contractName, contractMethod) {
+module.exports = async function(_contractName, contractMethod) {
     const { addresses } = require('../config');
 
     let contractParameters = [];
@@ -15,22 +15,14 @@ module.exports = function(_contractName, contractMethod) {
         // maybe one of the parameters is a provider
 
         const arg3 = arguments[2];
-        const arg4 = arguments[3];
         if(arg3) {
             if(Array.isArray(arg3))
                 contractParameters = arg3;
-            else if(arg3 && typeof arg3 === 'object')
-                provider = arg3;
-        }
-
-        if(arg4) {
-            if(!Array.isArray(arg4) && typeof arg4 === 'object')
-                provider = arg4;
         }
     }
-    if(!provider)
-        return Promise.reject(new Error('"provider" is absent'));
-    // if(['controller', 'controller
+
+    const wallet = setupWallet();
+
     let contractName = _contractName;
 
     switch(_contractName) {
@@ -40,8 +32,6 @@ module.exports = function(_contractName, contractMethod) {
             contractName = 'controllerV3';
             break;
         default:
-            contractName = _contractName;
-            break;
     }
 
     const address = addresses[contractName];
@@ -49,17 +39,30 @@ module.exports = function(_contractName, contractMethod) {
     if(!address)
         return Promise.reject(new Error('Contract name not recognized or hasn\'t been deployed: ' + contractName));
 
-    const contract = new ethers.Contract(addresses[contractName], getABI(contractName), provider);
+    const contract = new ethers.Contract(addresses[contractName], getABI(contractName), wallet);
 
     try {
-        return contract[contractMethod](...contractParameters)
+        return contract.estimateGas[contractMethod](...contractParameters)
+            .then(estimatedGas => {
+                const multiplied = estimatedGas.mul(150).div(100);
+                return contract[contractMethod](...contractParameters, {gasLimit: multiplied})
+            })
+            .catch(e => {
+                if(e.error && e.error.message && e.error.message.includes('Error:')) {
+                    let body = e.error;
+                    if(body.message.includes('Error: Error'))
+                        body.message = body.message.replace('Error: ', '');
+
+                    return Promise.reject(body);
+                }
+                else return Promise.reject(e);
+            });
     } catch(e) {
         if(e.message.includes('contract[contractMethod] is not a function'))
             return Promise.reject(new TypeError(`${contractName}.${contractMethod} is not a function`));
         else return Promise.reject(e);
+        /*
+        else Promise.reject('wtf');
+        */
     }
-}
-
-module.exports.reset = function() {
-    provider = null;
 }

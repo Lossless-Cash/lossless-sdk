@@ -1,11 +1,9 @@
-const { ethers } = require('hardhat');
 const chai = require('chai');
 chai.use( require('chai-as-promised') );
 const { expect } = chai;
 const sinon = require('sinon');
 const proxyquire = require('proxyquire');
 
-const { LosslessGovernance, LosslessReporting, LosslessStaking, LosslessControllerV3 } = require('../src');
 const faker = require('faker');
 const deployContract = require('./deployContract');
 
@@ -88,10 +86,9 @@ function createParameter(type) {
     describe('Tests for ' + sdkTestArgs.name + ' sdk functions', function() {
         const sandbox = sinon.createSandbox();
 
-        let accounts, sdk;
+        let sdk;
 
         before(async () => {
-            accounts = await ethers.getSigners();
             await deployContract();
         });
 
@@ -104,31 +101,6 @@ function createParameter(type) {
 
         if(contractName == null)
             throw new Error('TestError: Invalid contract name - ' + name);
-
-        beforeEach(() => {
-            if(contractName === 'governance')
-                sdk = new LosslessGovernance()
-            else if(contractName === 'reporting')
-                sdk = new LosslessReporting();
-            else if(contractName === 'staking')
-                sdk = new LosslessStaking();
-            else
-                sdk = new LosslessControllerV3();
-
-            return sdk.init(accounts[ faker.datatype.number({max: 9})])
-        });
-
-        it('init() for ' + name + ' should call correct arguments', function() {
-            const spy = sandbox.fake.resolves(true);
-
-            const path = '../src/' + name.substring(0, 1).toLowerCase() + name.substring(1);
-            const SdkModule = proxyquire(path, {'./contractCall': spy});
-            sdk = new SdkModule[name]();
-
-            const provider = faker.datatype.json();
-            return sdk.init(provider)
-                .then(() => sandbox.assert.calledWith(spy, contractName, 'getVersion', provider));
-        });
 
         contractMethods.filter(method => Array.isArray(method.params) && method.params.length > 0).forEach(args => {
             it(args.method + '() should fail if provided params are not correct', function() {

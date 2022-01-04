@@ -6,10 +6,6 @@ function badParam(message) {
 }
 
 class LosslessReporting {
-    init(provider) {
-        return contractCall('reporting', 'getVersion', provider);
-    }
-
     contract(methodName, parameters) {
         if(parameters && !Array.isArray(parameters))
             parameters = [parameters];
