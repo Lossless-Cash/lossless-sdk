@@ -2,7 +2,8 @@
   "name": "lossless-sdk",
   "version": "3.0.4",
   "description": "Wrapper library for Lossless v3 smart contracts",
-  "main": "src/index.js",
+  "main": "src/index",
+  "typings": "src/index.d.ts",
   "scripts": {
     "lint": "eslint src/**.js tests/**.{js,ts} config/**.{js,ts} -c ./.eslintrc.js",
     "compile": "mkdir contracts; npx hardhat compile",
