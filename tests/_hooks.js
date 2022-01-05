@@ -22,7 +22,7 @@ before(() => {
     if(fs.existsSync(addressesBackupFilePath)) {
         const backupFileContents = fs.readFileSync(addressesBackupFilePath, 'utf8');
         fs.writeFileSync(addressesFilePath, backupFileContents);
-    fs.unlinkSync(addressesBackupFilePath);
+        fs.unlinkSync(addressesBackupFilePath);
     } else
         fs.writeFileSync(addressesBackupFilePath, configAddressesFilecontents);
 });
