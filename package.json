@@ -1,6 +1,6 @@
 {
   "name": "lossless-sdk",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Wrapper library for Lossless v3 smart contracts",
   "main": "src/index.js",
   "scripts": {
