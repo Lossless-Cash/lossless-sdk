@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint src/**.js tests/**.{js,ts} config/**.{js,ts} -c ./.eslintrc.js",
+    "compile": "mkdir contracts; npx hardhat compile",
     "test": "mkdir contracts; NODE_ENV=test && npm run lint && npx hardhat test",
     "prepare": "rm contracts/ -rf; mkdir contracts; npx hardhat compile"
   },
