@@ -30,8 +30,8 @@ module.exports = {
     }
 }
 ```
-Other networks include: `polygon, avalanche, bsc, fantom,` and `harmony` for Harmony shard 0
-See all the networks you can define at [Mainnet addresses](https://lossless-cash.gitbook.io/lossless/technical-reference/lossless-controller/deployments)
+Other networks include: `polygon, avalanche, bsc, fantom,` and `harmony` for Harmony shard 0.
+See [Mainnet addresses](https://lossless-cash.gitbook.io/lossless/technical-reference/lossless-controller/deployments)
 
 In your code, import the sdk libraries corresponding to the contracts you want to call
 
