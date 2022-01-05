@@ -21,26 +21,26 @@ First, create a `lossless.config.js` file in the root of your project. It should
 ```
 module.exports = {
     networks: {
-        default: {
+        ethereum: {
             url: 'http://example.blocks.net'
-            chaiID: 1,
+            chainId: 1,
             privateKey: '0xabck....'
         }
+        ...
     }
 }
 ```
+See all the networks you can define under `networks` under [Mainnet addresses](https://lossless-cash.gitbook.io/lossless/technical-reference/lossless-controller/deployments)
 
 In your code, import the sdk libraries corresponding to the contracts you want to call
 
 example.js
 ```
-const { LosslessGovernance, provider } = require('lossless-sdk');
+const { LosslessGovernance } = require('lossless-sdk');
 // OR 
 // import { LosslessGovernance, provider  } from 'lossless-sdk');
 
 const losslessGovernance = new LosslessGovernance();
-
-await losslessGovernance.init( provider );
 
 await losslessGovernance.reportResolution(reportID)
 ```
