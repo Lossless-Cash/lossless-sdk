@@ -30,7 +30,8 @@ module.exports = {
     }
 }
 ```
-See all the networks you can define under `networks` under [Mainnet addresses](https://lossless-cash.gitbook.io/lossless/technical-reference/lossless-controller/deployments)
+Other networks include: `polygon, avalanche, bsc, fantom,` and `harmony` for Harmony shard 0
+See all the networks you can define at [Mainnet addresses](https://lossless-cash.gitbook.io/lossless/technical-reference/lossless-controller/deployments)
 
 In your code, import the sdk libraries corresponding to the contracts you want to call
 
@@ -45,7 +46,7 @@ const losslessGovernance = new LosslessGovernance();
 await losslessGovernance.reportResolution(reportID)
 ```
 
-The ethers object can also be imported from this module
+The ethers module can also be imported from this module
 
 ```
 const { ethers } = require('lossless-sdk')
