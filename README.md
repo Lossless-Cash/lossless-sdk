@@ -11,6 +11,8 @@ There are four classes that correspond to a Lossless V3 contract
 
 Each class can be imported from the module.
 
+# AT THE MOMENT ONLY ROPSTEN NETWORK IS SUPPORTED
+
 ## How to use
 
 ```
