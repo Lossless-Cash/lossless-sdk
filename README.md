@@ -1,9 +1,9 @@
-# Lossless Contracts SDK
-[![Tests](https://github.com/littlezigy/lossless-sdk/actions/workflows/tests.yml/badge.svg)](https://github.com/littlezigy/lossless-sdk/actions/workflows/tests.yml)
+# Lossless Contracts SDK (BETA)
 
 This is a library to call [Lossless V3 contracts](https://github.com/Lossless-Cash/lossless-v3).
 
 There are four classes that correspond to a Lossless V3 contract
+
 - LosslessGovernance
 - LosslessReporting
 - LosslessStaking
@@ -11,39 +11,52 @@ There are four classes that correspond to a Lossless V3 contract
 
 Each class can be imported from the module.
 
-
 ## How to use
+
 ```
 npm i lossless-sdk
 ```
 
 First, create a `lossless.config.js` file in the root of your project. It should look like this:
+
 ```
 module.exports = {
     networks: {
-        ethereum: {
+        defaultNetwork: "ropsten",
+        ropsten: {
             url: 'http://example.blocks.net'
-            chainId: 1,
+            chainId: 3,
             privateKey: '0xabck....'
         }
         ...
     }
 }
 ```
+
 Other networks include: `polygon, avalanche, bsc, fantom,` and `harmony` for Harmony shard 0.
 See [Mainnet addresses](https://lossless-cash.gitbook.io/lossless/technical-reference/lossless-controller/deployments)
 
 In your code, import the sdk libraries corresponding to the contracts you want to call
 
 example.js
+
 ```
-const { LosslessGovernance } = require('lossless-sdk');
-// OR 
-// import { LosslessGovernance, provider  } from 'lossless-sdk');
+const { LosslessReporting } = require('lossless-sdk');
+// OR
+// import { LosslessReporting  } from 'lossless-sdk');
 
-const losslessGovernance = new LosslessGovernance();
+async function main() {
+  const reporting = new LosslessReporting();
+  await reporting.report(
+    "0x39fc984ce8a0082de41889080583aD31C730B1c7",
+    "0x0299a45a955d0A0C0E3E1c6056abfd7357801F10"
+  );
 
-await losslessGovernance.reportResolution(reportID)
+  return "done";
+}
+
+main().then(console.log).catch(console.log);
+
 ```
 
 The ethers module can also be imported from this module
