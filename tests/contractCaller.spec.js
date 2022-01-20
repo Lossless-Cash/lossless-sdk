@@ -53,6 +53,5 @@ describe('ContractCaller', function() {
     it('With params: Should call contract method', function() {
         return contractCall('controller', 'isAddressProtected', [accounts[3].address, accounts[4].address])
         .then(res => expect(res).to.equal(false))
-        // .then(() => contractCall('governance', 'getAvailableAmount', [accounts[3].address, accounts[4].address])
     });
 });

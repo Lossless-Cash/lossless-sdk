@@ -12,8 +12,6 @@ module.exports = async function(_contractName, contractMethod) {
     let contractParameters = [];
 
     if(arguments.length > 2) {
-        // maybe one of the parameters is a provider
-
         const arg3 = arguments[2];
         if(arg3) {
             if(Array.isArray(arg3))
@@ -61,8 +59,5 @@ module.exports = async function(_contractName, contractMethod) {
         if(e.message.includes('contract[contractMethod] is not a function'))
             return Promise.reject(new TypeError(`${contractName}.${contractMethod} is not a function`));
         else return Promise.reject(e);
-        /*
-        else Promise.reject('wtf');
-        */
     }
 }

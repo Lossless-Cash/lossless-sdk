@@ -24,7 +24,6 @@ class LosslessGovernance {
     }
 
     isCommitteeMember(addr) {
-        // if(typeof addr != 'string' || !/^0x[\w\d]+$/.test(addr))
         if(!isAddress(addr))
             return Promise.reject(new TypeError('isCommitteeMember(): param "addr" must be an address'));
 
