@@ -13,11 +13,11 @@
   "keywords": [
     "lossless"
   ],
-  "author": "Adesuwa T. Dawodu",
+  "author": "Lossless",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/littlezigy/lossless-sdk.git"
+    "url": "https://github.com/Lossless-Cash/lossless-sdk.git"
   },
   "nodemonConfig": {
     "ext": "*.js,*.ts",
