@@ -1,8 +1,14 @@
 module.exports = {
   ropsten: {
-    governance: "0x6f6Ab0EC68C897301390620d2335D2b650ae7ed7",
-    controllerV3: "0x013d638a908fE9fE1323Aa9502964Ea9303dc706",
-    reporting: "0x2c5c25aD0f4be3260cC19e07944B05a79Df4f9E3",
-    staking: "0x2A6abc2A564011f803faf12B1cC512a4a343683c",
+    governance: "0x31bE55f6904cEDD9EEc8660b9a8cC02984d5dBa6",
+    controllerV3: "0x27fce20D62f1DE73B0Ae1Dc7572F881061692de9",
+    reporting: "0x448f21D861113De3b35d206A82ACC731A7d9c6D3",
+    staking: "0xed19A79D3A1f98e78c6Da78d87C4Ce88fDE45313",
   },
+  rinkeby: {
+    governance: "0x611619aCdE16A2D8F1D2787f4A58D2Ccb3404B64",
+    controllerV3: "0xb32aa4B6731Ba281A84E34757E41B72f2C090A44",
+    reporting: "0x21e9E944F5Fd62A3333C7a8F2C89747014179dbc",
+    staking: "0x28c66ff367690337A6fe1c824c36766D12C3A9cC",
+  }
 };

@@ -53,22 +53,6 @@ class LosslessControllerV3 {
             return badParam('executeNewSettlementPeriod(): token should be address of the token');
         return this.contract('executeNewSettlementPeriod', token);
     }
-
-    getLockedAmount(token, account) {
-        if(!isAddress(token))
-            return badParam('getLockedAmount(): "token" should be token address');
-        else if(!isAddress(account))
-            return badParam('getLockedAmount(): "account" should be an ethereum address');
-        return this.contract('getLockedAmount', [token, account]);
-    }
-
-    getAvailableAmount(token, account) {
-        if(!isAddress(token))
-            return badParam('getAvailableAmount(): "token" should be token address');
-        else if(!isAddress(account))
-            return badParam('getAvailableAmount(): "account" should be an ethereum address');
-        return this.contract('getAvailableAmount', [token, account]);
-    }
 }
 
 module.exports = { LosslessControllerV3 }
