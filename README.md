@@ -29,7 +29,7 @@ module.exports = {
     networks: {
         defaultNetwork: "ropsten",
         ropsten: {
-            url: 'http://example.blocks.net'
+            url: 'http://example.blocks.net',
             chainId: 3,
             privateKey: '0xabck....'
         }
