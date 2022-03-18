@@ -24,7 +24,7 @@ npm i lossless-sdk
 
 First, create a `lossless.config.js` file in the root of your project. It should look like this:
 
-```
+```js
 module.exports = {
     networks: {
         defaultNetwork: "ropsten",
@@ -45,7 +45,7 @@ In your code, import the sdk libraries corresponding to the contracts you want t
 
 example.js
 
-```
+```js
 const { LosslessReporting } = require('lossless-sdk');
 // OR
 // import { LosslessReporting  } from 'lossless-sdk');
