@@ -11,7 +11,10 @@ There are four classes that correspond to a Lossless V3 contract
 
 Each class can be imported from the module.
 
-# AT THE MOMENT ONLY ROPSTEN NETWORK IS SUPPORTED
+## SUPPORTED NETWORKS
+
+`ropsten`
+`rinkeby`
 
 ## How to use
 
@@ -35,7 +38,7 @@ module.exports = {
 }
 ```
 
-Other networks include: `polygon, avalanche, bsc, fantom,` and `harmony` for Harmony shard 0.
+Other networks include: `polygon, avalanche, bsc, fantom,` and `harmony`.
 See [Mainnet addresses](https://lossless-cash.gitbook.io/lossless/technical-reference/lossless-controller/deployments)
 
 In your code, import the sdk libraries corresponding to the contracts you want to call

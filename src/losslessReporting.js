@@ -38,6 +38,7 @@ class LosslessReporting {
             return badParam('secondReport(): account should be an address');
         else return this.contract('secondReport', [reportID, account]);
     }
+    
     reporterClaim(reportID) {
         if(!isInteger(reportID))
             return badParam('reporterClaim(): reportID must be integer');
