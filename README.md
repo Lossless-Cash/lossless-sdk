@@ -19,7 +19,7 @@ Each class can be imported from the module.
 ## How to use
 
 ```
-npm i lossless-sdk
+npm i @losslesscash/lossless-sdk --save
 ```
 
 First, create a `lossless.config.js` file in the root of your project. It should look like this:
@@ -48,7 +48,7 @@ example.js
 ```js
 const { LosslessReporting } = require('@losslesscash/lossless-sdk');
 // OR
-// import { LosslessReporting  } from 'lossless-sdk');
+// import { LosslessReporting  } from '@losslesscash/lossless-sdk');
 
 async function main() {
   const reporting = new LosslessReporting();
@@ -67,7 +67,7 @@ main().then(console.log).catch(console.log);
 The ethers module can also be imported from this module
 
 ```
-const { ethers } = require('lossless-sdk')
+const { ethers } = require('@losslesscash/lossless-sdk')
 // OR
-import { ethers } from 'lossless-sdk';
+import { ethers } from '@losslesscash/lossless-sdk';
 ```
