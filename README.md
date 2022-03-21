@@ -46,7 +46,7 @@ In your code, import the sdk libraries corresponding to the contracts you want t
 example.js
 
 ```js
-const { LosslessReporting } = require('lossless-sdk');
+const { LosslessReporting } = require('@losslesscash/lossless-sdk');
 // OR
 // import { LosslessReporting  } from 'lossless-sdk');
 
