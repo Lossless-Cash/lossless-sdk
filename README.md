@@ -27,14 +27,13 @@ First, create a `lossless.config.js` file in the root of your project. It should
 ```js
 module.exports = {
   defaultNetwork: "ropsten",
-    networks: {
-        ropsten: {
-            url: 'http://example.blocks.net',
-            chainId: 3,
-            privateKey: '0xabck....'
-        }
-        ...
-    }
+  networks: {
+      ropsten: {
+          url: 'http://example.blocks.net',
+          chainId: 3,
+          privateKey: '0xabck....'
+      }
+  }
 }
 ```
 
