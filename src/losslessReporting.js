@@ -27,7 +27,7 @@ class LosslessReporting {
         if(!isAddress(token))
             return badParam('report(): token should be an address');
         else if(!isAddress(account))
-            return badParam('report(): account should be an accress');
+            return badParam('report(): account should be an address');
         else return this.contract('report', [token, account]);
     }
 
