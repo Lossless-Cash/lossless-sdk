@@ -1,4 +1,4 @@
-# Lossless Contracts SDK (BETA)
+# Lossless Contracts SDK
 
 This is a library to call [Lossless V3 contracts](https://github.com/Lossless-Cash/lossless-v3).
 
@@ -15,6 +15,10 @@ Each class can be imported from the module.
 
 `ropsten`
 `rinkeby`
+`mainnet`
+`bsc`
+`polygon`
+`avalanche`
 
 ## How to use
 
@@ -28,16 +32,16 @@ First, create a `lossless.config.js` file in the root of your project. It should
 module.exports = {
   defaultNetwork: "ropsten",
   networks: {
-      ropsten: {
-          url: 'http://example.blocks.net',
-          chainId: 3,
-          privateKey: '0xabck....'
-      }
-  }
-}
+    ropsten: {
+      url: "http://example.blocks.net",
+      chainId: 3,
+      privateKey: "0xabck....",
+    },
+  },
+};
 ```
 
-Other networks include: `polygon, avalanche, bsc, fantom,` and `harmony`.
+Other networks include: `rinkeby, mainnet, polygon, avalanche, bsc, fantom,` and `harmony`.
 See [Mainnet addresses](https://lossless-cash.gitbook.io/lossless/technical-reference/lossless-controller/deployments)
 
 In your code, import the sdk libraries corresponding to the contracts you want to call
@@ -45,7 +49,7 @@ In your code, import the sdk libraries corresponding to the contracts you want t
 example.js
 
 ```js
-const { LosslessReporting } = require('@losslesscash/lossless-sdk');
+const { LosslessReporting } = require("@losslesscash/lossless-sdk");
 // OR
 // import { LosslessReporting  } from '@losslesscash/lossless-sdk');
 
@@ -60,7 +64,6 @@ async function main() {
 }
 
 main().then(console.log).catch(console.log);
-
 ```
 
 The ethers module can also be imported from this module
